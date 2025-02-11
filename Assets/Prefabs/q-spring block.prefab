@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 912506170854046149}
   - component: {fileID: 6063794742709941888}
-  - component: {fileID: 7095468866285204873}
+  - component: {fileID: 660488519383733814}
   m_Layer: 7
   m_Name: q-spring block
   m_TagString: Untagged
@@ -62,7 +62,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!68 &7095468866285204873
+--- !u!68 &660488519383733814
 EdgeCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -99,10 +99,10 @@ EdgeCollider2D:
   m_Offset: {x: 0, y: 0}
   m_EdgeRadius: 0
   m_Points:
-  - {x: -0.5043769, y: -0.43160966}
-  - {x: -0.5007822, y: 0.5054085}
-  - {x: 0.5078367, y: 0.51048917}
-  - {x: 0.511804, y: -0.42833948}
+  - {x: -0.50973237, y: -0.5365224}
+  - {x: -0.5065494, y: 0.50861585}
+  - {x: 0.51270664, y: 0.50716746}
+  - {x: 0.51225084, y: -0.53284234}
   m_AdjacentStartPoint: {x: 0, y: 0}
   m_AdjacentEndPoint: {x: 0, y: 0}
   m_UseAdjacentStartPoint: 0
@@ -288,7 +288,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   qboxAnimator: {fileID: 5998932542129297914}
-  coinAnimator: {fileID: 4404578502652542240}
+  coin: {fileID: 1305620803539716559}
 --- !u!4 &7326475125892380374 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4306235134635119418, guid: 31ee313d96aff0747aa20528cf468a16, type: 3}
@@ -365,8 +365,14 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8579619162702575120, guid: 5299913567f418549b634111c65c0cdd, type: 3}
   m_PrefabInstance: {fileID: 8689593597027845616}
   m_PrefabAsset: {fileID: 0}
---- !u!95 &4404578502652542240 stripped
-Animator:
-  m_CorrespondingSourceObject: {fileID: 5023650594933946576, guid: 5299913567f418549b634111c65c0cdd, type: 3}
+--- !u!114 &1305620803539716559 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7676909354485992511, guid: 5299913567f418549b634111c65c0cdd, type: 3}
   m_PrefabInstance: {fileID: 8689593597027845616}
   m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 96b702937e667534a9c525a8248101e5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
