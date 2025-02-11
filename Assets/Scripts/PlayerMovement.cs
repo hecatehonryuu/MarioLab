@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -83,7 +84,7 @@ public class PlayerMovement : MonoBehaviour
     void OnCollisionEnter2D(Collision2D col)
     {
 
-        if (((collisionLayerMask & (1 << col.transform.gameObject.layer)) > 0) & !onGroundCheck())
+        if (((collisionLayerMask & (1 << col.transform.gameObject.layer)) > 0) & onGroundCheck())
         {
             // update animator state
             marioAnimator.SetBool("onGround", true);
@@ -137,9 +138,10 @@ public class PlayerMovement : MonoBehaviour
     public void RestartButtonCallback(int input)
     {
         // reset everything
-        ResetGame();
+        // ResetGame();
         // resume time
-        Time.timeScale = 1.0f;
+        // Time.timeScale = 1.0f;
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
     private void ResetGame()

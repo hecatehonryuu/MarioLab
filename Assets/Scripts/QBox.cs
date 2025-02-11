@@ -6,6 +6,7 @@ public class QBox : MonoBehaviour
 
     public Animator qboxAnimator;
     public Coin coin;
+    public float initvel;
     private Rigidbody2D qboxBody;
     private Transform qboxTransform;
     private bool alive = true;
@@ -22,6 +23,7 @@ public class QBox : MonoBehaviour
         if (alive)
         {
             alive = false;
+            qboxBody.linearVelocityY = initvel;
             qboxAnimator.Play("q-block-ded");
             coin.spawnCoin();
         }
@@ -37,10 +39,4 @@ public class QBox : MonoBehaviour
         }
     }
 
-    public void RestartButtonCallback(int input)
-    {
-        alive = true;
-        qboxAnimator.Play("q-block-idle");
-        qboxBody.bodyType = RigidbodyType2D.Dynamic;
-    }
 }
