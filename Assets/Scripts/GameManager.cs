@@ -10,6 +10,7 @@ public class GameManager : MonoBehaviour
     public UnityEvent gameRestart;
     public UnityEvent<int> scoreChange;
     public UnityEvent gameOver;
+    public AudioSource marioDeathAudio;
 
     private int score = 0;
 
@@ -49,6 +50,7 @@ public class GameManager : MonoBehaviour
     public void GameOver()
     {
         Time.timeScale = 0.0f;
+        marioDeathAudio.Play();
         gameOver.Invoke();
     }
 }

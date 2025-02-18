@@ -19,7 +19,7 @@ public class PlayerMovement : MonoBehaviour
     public LayerMask layerMask;
     public Animator marioAnimator;
     public AudioSource marioAudio;
-    public AudioClip marioDeath;
+    public AudioSource marioDeathAudio;
     public Transform gameCamera;
     public GameManager gameManager;
 
@@ -80,7 +80,7 @@ public class PlayerMovement : MonoBehaviour
         {
             // play death animation
             marioAnimator.Play("mario-die");
-            marioAudio.PlayOneShot(marioDeath);
+            marioDeathAudio.Play();
             alive = false;
         }
     }
