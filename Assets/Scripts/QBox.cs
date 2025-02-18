@@ -5,15 +5,18 @@ public class QBox : MonoBehaviour
 {
 
     public Animator qboxAnimator;
+    public GameObject qbox;
     public Coin coin;
     public float initvel;
+    private Transform qboxTransform;
     private Rigidbody2D qboxBody;
     private bool alive = true;
 
     void Start()
     {
         alive = true;
-        qboxBody = GetComponent<Rigidbody2D>();
+        qboxTransform = qbox.transform;
+        qboxBody = qbox.GetComponent<Rigidbody2D>();
     }
 
     void OnCollisionEnter2D(Collision2D col)
@@ -29,9 +32,9 @@ public class QBox : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (!alive && qboxBody.linearVelocityY < 0 && transform.localPosition.y < 0.1f)
+        if (!alive && qboxBody.linearVelocityY < 0 && qboxTransform.localPosition.y < 0.1f)
         {
-            transform.localPosition = new Vector3(0, 0, 0);
+            qboxTransform.localPosition = new Vector3(0, 0, 0);
             qboxBody.linearVelocity = new Vector2(0, 0);
             qboxBody.bodyType = RigidbodyType2D.Static;
         }
@@ -42,7 +45,9 @@ public class QBox : MonoBehaviour
         alive = true;
         qboxBody.linearVelocity = new Vector2(0, 0);
         qboxBody.bodyType = RigidbodyType2D.Dynamic;
-        transform.localPosition = new Vector3(0, 0, 0);
+        qboxTransform.localPosition = new Vector3(0, 0, 0);
+        qboxAnimator.Play("q-block-idle");
+        coin.GameRestart();
     }
 
 }

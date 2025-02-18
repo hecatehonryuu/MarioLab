@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 912506170854046149}
   - component: {fileID: 6063794742709941888}
   - component: {fileID: 660488519383733814}
+  - component: {fileID: 5860730923964285679}
   m_Layer: 7
   m_Name: spring-block
   m_TagString: Untagged
@@ -107,6 +108,22 @@ EdgeCollider2D:
   m_AdjacentEndPoint: {x: 0, y: 0}
   m_UseAdjacentStartPoint: 0
   m_UseAdjacentEndPoint: 0
+--- !u!114 &5860730923964285679
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 435001095441745442}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e4f4b9d2e86fe0d4894d6d77d272da11, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  brick: {fileID: 2003499034483759039}
+  coin: {fileID: 1305620803539716559}
+  initvel: 10
+  spawnCoin: 1
 --- !u!1 &2003499034483759039
 GameObject:
   m_ObjectHideFlags: 0
@@ -120,7 +137,6 @@ GameObject:
   - component: {fileID: 8702908620955780953}
   - component: {fileID: 4779027562393005128}
   - component: {fileID: 1554590286545093151}
-  - component: {fileID: 97190671848975334}
   m_Layer: 7
   m_Name: brick
   m_TagString: Ground
@@ -292,21 +308,6 @@ SpringJoint2D:
   m_Distance: 1
   m_DampingRatio: 0.3
   m_Frequency: 3
---- !u!114 &97190671848975334
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2003499034483759039}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e4f4b9d2e86fe0d4894d6d77d272da11, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  coin: {fileID: 1305620803539716559}
-  initvel: 10
-  spawnCoin: 1
 --- !u!1001 &8689593597027845616
 PrefabInstance:
   m_ObjectHideFlags: 0
