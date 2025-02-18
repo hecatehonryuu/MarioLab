@@ -120,10 +120,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b7b246b7330b5484c939e15ea39ecb3f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  brick: {fileID: 2003499034483759039}
+  coin: {fileID: 1305620803539716559}
+  blockkManager: {fileID: 0}
+  initvel: 10
+  spawnCoin: 0
   qboxAnimator: {fileID: 5998932542129297914}
   qbox: {fileID: 2003499034483759039}
-  coin: {fileID: 1305620803539716559}
-  initvel: 10
 --- !u!1 &2003499034483759039
 GameObject:
   m_ObjectHideFlags: 0
@@ -350,6 +353,34 @@ PrefabInstance:
     - target: {fileID: 4588255654124030266, guid: 5299913567f418549b634111c65c0cdd, type: 3}
       propertyPath: m_SortingOrder
       value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7676909354485992511, guid: 5299913567f418549b634111c65c0cdd, type: 3}
+      propertyPath: coinEvent.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7676909354485992511, guid: 5299913567f418549b634111c65c0cdd, type: 3}
+      propertyPath: coinEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7676909354485992511, guid: 5299913567f418549b634111c65c0cdd, type: 3}
+      propertyPath: coinEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 2795358529890633622}
+    - target: {fileID: 7676909354485992511, guid: 5299913567f418549b634111c65c0cdd, type: 3}
+      propertyPath: coinEvent.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7676909354485992511, guid: 5299913567f418549b634111c65c0cdd, type: 3}
+      propertyPath: coinEvent.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: IncreaseScore
+      objectReference: {fileID: 0}
+    - target: {fileID: 7676909354485992511, guid: 5299913567f418549b634111c65c0cdd, type: 3}
+      propertyPath: coinEvent.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: Brick, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 7676909354485992511, guid: 5299913567f418549b634111c65c0cdd, type: 3}
+      propertyPath: coinEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 8579619162702575120, guid: 5299913567f418549b634111c65c0cdd, type: 3}
       propertyPath: m_LocalPosition.x

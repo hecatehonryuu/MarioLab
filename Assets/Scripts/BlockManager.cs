@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class BlockManager : MonoBehaviour
 {
+    public GameManager gameManager;
     // Start is called before the first frame update
     void Start()
     {
@@ -14,6 +15,11 @@ public class BlockManager : MonoBehaviour
     void Update()
     {
 
+    }
+
+    public void IncreaseScore(int increment)
+    {
+        gameManager.IncreaseScore(increment);
     }
 
     public void GameRestart()

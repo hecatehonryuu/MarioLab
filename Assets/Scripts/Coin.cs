@@ -1,10 +1,11 @@
 
 using UnityEngine;
+using UnityEngine.Events;
 
 public class Coin : MonoBehaviour
 {
     public Animator coinAnimator;
-    public GameManager gameManager;
+    public UnityEvent<int> coinEvent;
     private AudioSource coinAudio;
     private SpriteRenderer coinSprite;
     void Start()
@@ -25,7 +26,7 @@ public class Coin : MonoBehaviour
         coinAudio.Play();
         coinAnimator.Play("coin-idle");
         coinSprite.enabled = false;
-        gameManager.IncreaseScore(1);
+        coinEvent.Invoke(1);
     }
 
     public void GameRestart()

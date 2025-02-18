@@ -7,6 +7,7 @@ using UnityEngine.SceneManagement;
 
 public class PlayerMovement : MonoBehaviour
 {
+    [Header("Mario Properties")]
     public float speed = 10;
     public float maxSpeed = 20;
     public float upSpeed = 1;
@@ -21,6 +22,7 @@ public class PlayerMovement : MonoBehaviour
     public AudioClip marioDeath;
     public Transform gameCamera;
     public GameManager gameManager;
+
     private Rigidbody2D marioBody;
     private SpriteRenderer marioSprite;
     private bool faceRightState = true;

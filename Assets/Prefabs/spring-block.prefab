@@ -122,6 +122,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   brick: {fileID: 2003499034483759039}
   coin: {fileID: 1305620803539716559}
+  blockManager: {fileID: 0}
   initvel: 10
   spawnCoin: 1
 --- !u!1 &2003499034483759039
@@ -327,6 +328,30 @@ PrefabInstance:
     - target: {fileID: 4588255654124030266, guid: 5299913567f418549b634111c65c0cdd, type: 3}
       propertyPath: m_SortingOrder
       value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7676909354485992511, guid: 5299913567f418549b634111c65c0cdd, type: 3}
+      propertyPath: coinEvent.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7676909354485992511, guid: 5299913567f418549b634111c65c0cdd, type: 3}
+      propertyPath: coinEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 5860730923964285679}
+    - target: {fileID: 7676909354485992511, guid: 5299913567f418549b634111c65c0cdd, type: 3}
+      propertyPath: coinEvent.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7676909354485992511, guid: 5299913567f418549b634111c65c0cdd, type: 3}
+      propertyPath: coinEvent.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: IncreaseScore
+      objectReference: {fileID: 0}
+    - target: {fileID: 7676909354485992511, guid: 5299913567f418549b634111c65c0cdd, type: 3}
+      propertyPath: coinEvent.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: Brick, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 7676909354485992511, guid: 5299913567f418549b634111c65c0cdd, type: 3}
+      propertyPath: coinEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 8579619162702575120, guid: 5299913567f418549b634111c65c0cdd, type: 3}
       propertyPath: m_LocalPosition.x

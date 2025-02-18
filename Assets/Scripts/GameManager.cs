@@ -37,13 +37,11 @@ public class GameManager : MonoBehaviour
     public void IncreaseScore(int increment)
     {
         score += increment;
-        Debug.Log("score: " + score);
         SetScore(score);
     }
 
     public void SetScore(int score)
     {
-        Debug.Log("score change invoked");
         scoreChange.Invoke(score);
     }
 

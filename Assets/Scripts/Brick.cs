@@ -5,6 +5,7 @@ public class Brick : MonoBehaviour
 {
     public GameObject brick;
     public Coin coin;
+    public BlockManager blockManager;
     public float initvel;
     public bool spawnCoin = false;
     private bool alive = true;
@@ -27,6 +28,11 @@ public class Brick : MonoBehaviour
             alive = false;
             coin.spawnCoin();
         }
+    }
+
+    public void IncreaseScore(int val)
+    {
+        blockManager.IncreaseScore(val);
     }
 
 
