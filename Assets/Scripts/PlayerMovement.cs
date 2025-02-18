@@ -16,7 +16,8 @@ public class PlayerMovement : MonoBehaviour
     public Vector3 boxSize;
     public Vector3 startPosition = new Vector3(0.0f, 0.0f, 0.0f);
     public Vector3 startCameraPosition = new Vector3(0.0f, 0.0f, 0.0f);
-    public LayerMask layerMask;
+    public LayerMask groundLayerMask;
+    public LayerMask enemyLayerMask;
     public Animator marioAnimator;
     public AudioSource marioAudio;
     public AudioSource marioDeathAudio;
@@ -78,10 +79,19 @@ public class PlayerMovement : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Enemy") && alive)
         {
-            // play death animation
-            marioAnimator.Play("mario-die");
-            marioDeathAudio.Play();
-            alive = false;
+            Transform enemyTransform = other.gameObject.transform;
+            if (Mathf.Abs(transform.position.x - enemyTransform.position.x) < 0.7f && (transform.position.y - enemyTransform.position.y) > 0.5f)
+            {
+                marioBody.AddForce(Vector2.up * upSpeed / 2, ForceMode2D.Impulse);
+                gameManager.IncreaseScore(1);
+            }
+            else
+            {
+                // play death animation
+                marioAnimator.Play("mario-die");
+                marioDeathAudio.Play();
+                alive = false;
+            }
         }
     }
 
@@ -175,7 +185,7 @@ public class PlayerMovement : MonoBehaviour
 
     private bool onGroundCheck()
     {
-        if (Physics2D.BoxCast(transform.position, boxSize, 0, -transform.up, maxDistance, layerMask))
+        if (Physics2D.BoxCast(transform.position, boxSize, 0, -transform.up, maxDistance, groundLayerMask))
         {
             return true;
         }
