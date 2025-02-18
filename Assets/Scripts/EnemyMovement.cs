@@ -5,14 +5,13 @@ using UnityEngine;
 public class EnemyMovement : MonoBehaviour
 {
 
-    private float originalX;
-    private float maxOffset = 5.0f;
-    private float enemyPatroltime = 2.0f;
-    private int moveRight = -1;
-    private Vector2 velocity;
-
-    private Rigidbody2D enemyBody;
+    public float maxOffset = 5.0f;
+    public float enemyPatroltime = 2.0f;
     public Vector3 startPosition = new Vector3(0.0f, 0.0f, 0.0f);
+    private int moveRight = -1;
+    private float originalX;
+    private Vector2 velocity;
+    private Rigidbody2D enemyBody;
 
     void Start()
     {
@@ -45,4 +44,11 @@ public class EnemyMovement : MonoBehaviour
         }
     }
 
+    public void GameRestart()
+    {
+        transform.localPosition = startPosition;
+        originalX = transform.position.x;
+        moveRight = -1;
+        ComputeVelocity();
+    }
 }

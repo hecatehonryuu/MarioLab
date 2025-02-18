@@ -25,4 +25,12 @@ public class Brick : MonoBehaviour
             coin.spawnCoin();
         }
     }
+
+
+    public void GameRestart()
+    {
+        alive = true;
+        brickBody.linearVelocity = new Vector2(0, 0);
+        transform.localPosition = new Vector3(0, 0, 0);
+    }
 }

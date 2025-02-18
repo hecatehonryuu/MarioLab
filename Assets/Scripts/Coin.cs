@@ -4,6 +4,7 @@ using UnityEngine;
 public class Coin : MonoBehaviour
 {
     public Animator coinAnimator;
+    public GameManager gameManager;
     private AudioSource coinAudio;
     private SpriteRenderer coinSprite;
     void Start()
@@ -19,10 +20,16 @@ public class Coin : MonoBehaviour
         coinAnimator.Play("coin-jump");
 
     }
-    public void playCoinSound()
+    public void collectCoin()
     {
         coinAudio.Play();
         coinAnimator.Play("coin-idle");
+        coinSprite.enabled = false;
+        gameManager.IncreaseScore(1);
+    }
+
+    public void GameRestart()
+    {
         coinSprite.enabled = false;
     }
 }
