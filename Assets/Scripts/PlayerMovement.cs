@@ -5,8 +5,12 @@ using TMPro;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
-public class PlayerMovement : MonoBehaviour
+public class PlayerMovement : Singleton<PlayerMovement>
 {
+
+    public Vector3 startPosition = new Vector3(-36f, 1.5f, 0.0f);
+    public Vector3 startCameraPosition = new Vector3(-32f, 6f, -20f);
+
     [Header("Mario Properties")]
     public float speed = 10;
     public float maxSpeed = 20;
@@ -14,8 +18,8 @@ public class PlayerMovement : MonoBehaviour
     public float maxDistance;
     public float deathImpulse = 15;
     public Vector3 boxSize;
-    public Vector3 startPosition = new Vector3(0.0f, 0.0f, 0.0f);
-    public Vector3 startCameraPosition = new Vector3(0.0f, 0.0f, 0.0f);
+
+    [Header("References")]
     public LayerMask groundLayerMask;
     public LayerMask enemyLayerMask;
     public Animator marioAnimator;
@@ -43,6 +47,8 @@ public class PlayerMovement : MonoBehaviour
         marioSprite = GetComponent<SpriteRenderer>();
         // update animator state
         marioAnimator.SetBool("onGround", true);
+        // subscribe to scene manager scene change
+        SceneManager.activeSceneChanged += SetStartingPosition;
     }
 
     // Update is called once per frame
@@ -210,6 +216,16 @@ public class PlayerMovement : MonoBehaviour
     void PlayDeathImpulse()
     {
         marioBody.AddForce(Vector2.up * deathImpulse, ForceMode2D.Impulse);
+    }
+
+    public void SetStartingPosition(Scene current, Scene next)
+    {
+        gameCamera = GameObject.Find("Main Camera").transform;
+        if (next.name == "World-1-2")
+        {
+            // change the position accordingly in your World-1-2 case
+            this.transform.position = new Vector3(-4f, 1.5f, 0.0f);
+        }
     }
 
 }

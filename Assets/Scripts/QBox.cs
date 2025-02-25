@@ -6,18 +6,14 @@ public class QBox : MonoBehaviour
 
     public Animator qboxAnimator;
     public Coin coin;
-    public GameObject qbox;
-    public BlockManager blockManager;
-    public float initvel;
+    public float initvel = 10;
     private bool alive = true;
     private Rigidbody2D qboxBody;
-    private Transform qboxTransform;
 
     void Start()
     {
         alive = true;
-        qboxBody = qbox.GetComponent<Rigidbody2D>();
-        qboxTransform = qbox.transform;
+        qboxBody = GetComponent<Rigidbody2D>();
     }
 
     void OnCollisionEnter2D(Collision2D col)
@@ -33,17 +29,12 @@ public class QBox : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (!alive && qboxBody.linearVelocityY < 0 && qboxTransform.localPosition.y < 0.1f)
+        if (!alive && qboxBody.linearVelocityY < 0 && transform.localPosition.y < 0.1f)
         {
-            qboxTransform.localPosition = new Vector3(0, 0, 0);
+            transform.localPosition = new Vector3(0, 0, 0);
             qboxBody.linearVelocity = new Vector2(0, 0);
             qboxBody.bodyType = RigidbodyType2D.Static;
         }
-    }
-
-    public void IncreaseScore(int val)
-    {
-        blockManager.IncreaseScore(val);
     }
 
     public void GameRestart()
@@ -51,7 +42,7 @@ public class QBox : MonoBehaviour
         alive = true;
         qboxBody.bodyType = RigidbodyType2D.Dynamic;
         qboxBody.linearVelocity = new Vector2(0, 0);
-        qboxTransform.localPosition = new Vector3(0, 0, 0);
+        transform.localPosition = new Vector3(0, 0, 0);
         qboxAnimator.Play("q-block-idle");
         coin.GameRestart();
     }
