@@ -5,11 +5,11 @@ using TMPro;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
-public class PlayerMovement : Singleton<PlayerMovement>
+public class PlayerMovement : MonoBehaviour
 {
 
-    public Vector3 startPosition = new Vector3(-36f, 1.5f, 0.0f);
-    public Vector3 startCameraPosition = new Vector3(-32f, 6f, -20f);
+    public Vector3 startPosition = new Vector3(0.0f, 0.0f, 0.0f);
+    public Vector3 startCameraPosition = new Vector3(4.0f, 0.0f, -20f);
 
     [Header("Mario Properties")]
     public float speed = 10;
@@ -26,8 +26,8 @@ public class PlayerMovement : Singleton<PlayerMovement>
     public AudioSource marioAudio;
     public AudioSource marioDeathAudio;
     public Transform gameCamera;
-    public GameManager gameManager;
 
+    private GameManager gameManager;
     private Rigidbody2D marioBody;
     private SpriteRenderer marioSprite;
     private bool faceRightState = true;
@@ -38,17 +38,25 @@ public class PlayerMovement : Singleton<PlayerMovement>
     [System.NonSerialized]
     public bool alive = true;
 
+
+    void Awake()
+    {
+        gameManager = GameManager.instance;
+        marioBody = GetComponent<Rigidbody2D>();
+        marioSprite = GetComponent<SpriteRenderer>();
+        // subscribe to Game Restart event
+        gameManager.gameStart.AddListener(GameRestart);
+        gameManager.gameRestart.AddListener(GameRestart);
+    }
+
+
     // Start is called before the first frame update
     void Start()
     {
         // Set to be 30 FPS
         Application.targetFrameRate = 30;
-        marioBody = GetComponent<Rigidbody2D>();
-        marioSprite = GetComponent<SpriteRenderer>();
         // update animator state
         marioAnimator.SetBool("onGround", true);
-        // subscribe to scene manager scene change
-        SceneManager.activeSceneChanged += SetStartingPosition;
     }
 
     // Update is called once per frame
@@ -216,16 +224,6 @@ public class PlayerMovement : Singleton<PlayerMovement>
     void PlayDeathImpulse()
     {
         marioBody.AddForce(Vector2.up * deathImpulse, ForceMode2D.Impulse);
-    }
-
-    public void SetStartingPosition(Scene current, Scene next)
-    {
-        gameCamera = GameObject.Find("Main Camera").transform;
-        if (next.name == "World-1-2")
-        {
-            // change the position accordingly in your World-1-2 case
-            this.transform.position = new Vector3(-4f, 1.5f, 0.0f);
-        }
     }
 
 }

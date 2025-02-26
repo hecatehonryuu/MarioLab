@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
-public class HUDManager : Singleton<HUDManager>
+public class HUDManager : MonoBehaviour
 {
     private Vector3[] scoreTextPosition = {
         new Vector3(-300, 200, 0),
@@ -19,6 +19,17 @@ public class HUDManager : Singleton<HUDManager>
     public GameObject gameoverText;
 
     public GameObject gameOverPanel;
+
+
+    void Awake()
+    {
+        // subscribe to events
+        GameManager.instance.gameStart.AddListener(GameStart);
+        GameManager.instance.gameOver.AddListener(GameOver);
+        GameManager.instance.gameRestart.AddListener(GameStart);
+        GameManager.instance.scoreChange.AddListener(SetScore);
+
+    }
     // Start is called before the first frame update
     void Start()
     {

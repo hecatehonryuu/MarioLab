@@ -434,11 +434,11 @@ Transform:
   m_GameObject: {fileID: 250680389}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 2.7296891, y: -5.587297, z: 0.0150537025}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 2006737257}
+  m_Father: {fileID: 630097834}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &258903551
 GameObject:
@@ -546,8 +546,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95e60da5ddbc00d428968277b9d0d00e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startPosition: {x: -30, y: -4.5, z: 0}
-  startCameraPosition: {x: -31, y: 0, z: -20}
+  startPosition: {x: -4, y: 1.5, z: 0}
+  startCameraPosition: {x: 0, y: 6, z: -20}
   speed: 20
   maxSpeed: 40
   upSpeed: 15
@@ -564,7 +564,6 @@ MonoBehaviour:
   marioAudio: {fileID: 258903559}
   marioDeathAudio: {fileID: 250680390}
   gameCamera: {fileID: 519420032}
-  gameManager: {fileID: 2006737256}
 --- !u!50 &258903555
 Rigidbody2D:
   serializedVersion: 5
@@ -1198,7 +1197,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 609522606}
-  - component: {fileID: 609522607}
   m_Layer: 0
   m_Name: Blocks
   m_TagString: Untagged
@@ -1221,19 +1219,39 @@ Transform:
   m_Children: []
   m_Father: {fileID: 138806905}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &609522607
-MonoBehaviour:
+--- !u!1 &630097833
+GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 609522605}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2c38d83d8f01d4a4aac6a3530f33ff74, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  gameManager: {fileID: 2006737256}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 630097834}
+  m_Layer: 0
+  m_Name: Sounds
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &630097834
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 630097833}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -2.7296891, y: 5.587297, z: -0.0150537025}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 250680391}
+  - {fileID: 2008293470}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &701436046
 GameObject:
   m_ObjectHideFlags: 0
@@ -1279,6 +1297,7 @@ GameObject:
   - component: {fileID: 765425046}
   - component: {fileID: 765425045}
   - component: {fileID: 765425044}
+  - component: {fileID: 765425047}
   m_Layer: 5
   m_Name: restart_button
   m_TagString: Untagged
@@ -1349,9 +1368,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2006737256}
-        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
-        m_MethodName: GameRestart
+      - m_Target: {fileID: 765425047}
+        m_TargetAssemblyTypeName: ButtonController, Assembly-CSharp
+        m_MethodName: ButtonClick
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1399,6 +1418,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 765425042}
   m_CullTransparentMesh: 1
+--- !u!114 &765425047
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 765425042}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e30e94478d189d642843cbf0735cc426, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &783262951
 GameObject:
   m_ObjectHideFlags: 0
@@ -1682,7 +1713,8 @@ PrefabInstance:
       propertyPath: m_SortingLayerID
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2633013790581887774, guid: a640aa11f27bf6e41bcb31e17b6afefc, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -2272,7 +2304,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 1905754915}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1702342723
@@ -2409,6 +2442,76 @@ MonoBehaviour:
   restartButton: {fileID: 765425042}
   gameoverText: {fileID: 1188948395}
   gameOverPanel: {fileID: 1638094267}
+--- !u!1001 &1905754914
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 1702342722}
+    m_Modifications:
+    - target: {fileID: 7346088558026315738, guid: b469efea9c789f74ead22b43345ebd81, type: 3}
+      propertyPath: m_Name
+      value: goomba
+      objectReference: {fileID: 0}
+    - target: {fileID: 8209782660252281312, guid: b469efea9c789f74ead22b43345ebd81, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8209782660252281312, guid: b469efea9c789f74ead22b43345ebd81, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8209782660252281312, guid: b469efea9c789f74ead22b43345ebd81, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8209782660252281312, guid: b469efea9c789f74ead22b43345ebd81, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8209782660252281312, guid: b469efea9c789f74ead22b43345ebd81, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8209782660252281312, guid: b469efea9c789f74ead22b43345ebd81, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8209782660252281312, guid: b469efea9c789f74ead22b43345ebd81, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8209782660252281312, guid: b469efea9c789f74ead22b43345ebd81, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8209782660252281312, guid: b469efea9c789f74ead22b43345ebd81, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8209782660252281312, guid: b469efea9c789f74ead22b43345ebd81, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8744094068091896951, guid: b469efea9c789f74ead22b43345ebd81, type: 3}
+      propertyPath: startPosition.x
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8744094068091896951, guid: b469efea9c789f74ead22b43345ebd81, type: 3}
+      propertyPath: startPosition.y
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: b469efea9c789f74ead22b43345ebd81, type: 3}
+--- !u!4 &1905754915 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8209782660252281312, guid: b469efea9c789f74ead22b43345ebd81, type: 3}
+  m_PrefabInstance: {fileID: 1905754914}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2006737255
 GameObject:
   m_ObjectHideFlags: 0
@@ -2477,7 +2580,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 609522607}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: BlockManager, Assembly-CSharp
         m_MethodName: GameRestart
         m_Mode: 1
@@ -2528,7 +2631,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 609522607}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: BlockManager, Assembly-CSharp
         m_MethodName: GameRestart
         m_Mode: 1
@@ -2582,9 +2685,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 250680391}
-  - {fileID: 2008293470}
+  m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2008293469
@@ -2613,11 +2714,11 @@ Transform:
   m_GameObject: {fileID: 2008293469}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 2.7296891, y: -5.587297, z: 0.0150537025}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 2006737257}
+  m_Father: {fileID: 630097834}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!82 &2008293471
 AudioSource:
@@ -2837,5 +2938,6 @@ SceneRoots:
   - {fileID: 138806905}
   - {fileID: 1702342722}
   - {fileID: 1758404650}
+  - {fileID: 630097834}
   - {fileID: 273558797}
   - {fileID: 2006737257}
