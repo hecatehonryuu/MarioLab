@@ -45,6 +45,12 @@ public class EnemyMovement : MonoBehaviour
                 enemyBody.bodyType = RigidbodyType2D.Static;
             }
         }
+        else if (other.gameObject.layer == 10) // else if hitting Pipe, flip travel direction
+        {
+            moveRight *= -1;
+            ComputeVelocity();
+            Movegoomba();
+        }
     }
 
     void Update()
