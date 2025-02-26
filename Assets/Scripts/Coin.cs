@@ -5,14 +5,20 @@ using UnityEngine.Events;
 public class Coin : MonoBehaviour
 {
     public Animator coinAnimator;
-    private BlockManager blockManager;
     private AudioSource coinAudio;
     private SpriteRenderer coinSprite;
-    void Start()
+    private GameManager gameManager;
+
+    void Awake()
     {
-        blockManager = GameObject.Find("Blocks").GetComponent<BlockManager>();
+        gameManager = GameManager.instance;
         coinAudio = GetComponent<AudioSource>();
         coinSprite = GetComponent<SpriteRenderer>();
+        gameManager.gameStart.AddListener(GameRestart);
+        gameManager.gameRestart.AddListener(GameRestart);
+    }
+    void Start()
+    {
         coinSprite.enabled = false;
     }
 
@@ -27,7 +33,7 @@ public class Coin : MonoBehaviour
         coinAudio.Play();
         coinAnimator.Play("coin-idle");
         coinSprite.enabled = false;
-        blockManager.IncreaseScore(1);
+        gameManager.IncreaseScore(1);
     }
 
     public void GameRestart()

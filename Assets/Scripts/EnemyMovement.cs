@@ -16,9 +16,13 @@ public class EnemyMovement : MonoBehaviour
     private Vector2 velocity;
     private Rigidbody2D enemyBody;
 
-    void Start()
+    void Awake()
     {
         enemyBody = GetComponent<Rigidbody2D>();
+
+    }
+    void Start()
+    {
         // get the starting position
         originalX = transform.position.x;
         ComputeVelocity();

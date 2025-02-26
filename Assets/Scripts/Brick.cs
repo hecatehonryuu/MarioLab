@@ -9,10 +9,15 @@ public class Brick : MonoBehaviour
     private bool alive = true;
     private Rigidbody2D brickBody;
 
+    void Awake()
+    {
+        brickBody = GetComponent<Rigidbody2D>();
+        GameManager.instance.gameStart.AddListener(GameRestart);
+        GameManager.instance.gameRestart.AddListener(GameRestart);
+    }
     void Start()
     {
         alive = true;
-        brickBody = GetComponent<Rigidbody2D>();
     }
 
     void OnCollisionEnter2D(Collision2D col)
