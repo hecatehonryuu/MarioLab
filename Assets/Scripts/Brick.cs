@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 public class Brick : MonoBehaviour
 {
-    public Coin coin;
     public float initvel = 10;
     public bool spawnCoin = false;
+    public GameObject coinPrefab;
     private bool alive = true;
     private Rigidbody2D brickBody;
 
@@ -27,7 +27,7 @@ public class Brick : MonoBehaviour
         if (spawnCoin && alive)
         {
             alive = false;
-            coin.spawnCoin();
+            Instantiate(coinPrefab, new Vector3(transform.position.x, transform.position.y + 1, 0), Quaternion.identity, transform);
         }
     }
 
@@ -37,9 +37,5 @@ public class Brick : MonoBehaviour
         alive = true;
         brickBody.linearVelocity = new Vector2(0, 0);
         transform.localPosition = new Vector3(0, 0, 0);
-        if (spawnCoin)
-        {
-            coin.GameRestart();
-        }
     }
 }

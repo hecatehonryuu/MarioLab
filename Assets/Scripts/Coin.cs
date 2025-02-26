@@ -2,42 +2,37 @@
 using UnityEngine;
 using UnityEngine.Events;
 
-public class Coin : MonoBehaviour
+public class Coin : BasePowerup
 {
-    public Animator coinAnimator;
-    private AudioSource coinAudio;
-    private SpriteRenderer coinSprite;
-    private GameManager gameManager;
+    public AudioSource coinAudio;
 
-    void Awake()
+    protected override void Start()
     {
-        gameManager = GameManager.instance;
-        coinAudio = GetComponent<AudioSource>();
-        coinSprite = GetComponent<SpriteRenderer>();
-        gameManager.gameStart.AddListener(GameRestart);
-        gameManager.gameRestart.AddListener(GameRestart);
-    }
-    void Start()
-    {
-        coinSprite.enabled = false;
+        base.Start(); // call base class Start()
+        this.type = PowerupType.Coin;
     }
 
-    public void spawnCoin()
+    void OnTriggerEnter2D(Collider2D other)
     {
-        coinSprite.enabled = true;
-        coinAnimator.Play("coin-jump");
-
+        if (other.gameObject.CompareTag("Player") && spawned)
+        {
+            ApplyPowerup(other.gameObject.GetComponent<PlayerMovement>());
+            // then destroy powerup (optional)
+            DestroyPowerup();
+        }
     }
-    public void collectCoin()
+
+    // interface implementation
+    public override void SpawnPowerup()
     {
+        spawned = true;
         coinAudio.Play();
-        coinAnimator.Play("coin-idle");
-        coinSprite.enabled = false;
-        gameManager.IncreaseScore(1);
     }
 
-    public void GameRestart()
+
+    // interface implementation
+    public override void ApplyPowerup(MonoBehaviour i)
     {
-        coinSprite.enabled = false;
+        i.GetComponent<PlayerMovement>().Powerup(type);
     }
 }

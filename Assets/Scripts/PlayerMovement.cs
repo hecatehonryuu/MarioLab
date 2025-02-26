@@ -25,6 +25,8 @@ public class PlayerMovement : MonoBehaviour
     public Animator marioAnimator;
     public AudioSource marioAudio;
     public AudioSource marioDeathAudio;
+    public AudioSource coinAudio;
+    public AudioSource shroomAudio;
     public Transform gameCamera;
 
     private GameManager gameManager;
@@ -224,6 +226,19 @@ public class PlayerMovement : MonoBehaviour
     void PlayDeathImpulse()
     {
         marioBody.AddForce(Vector2.up * deathImpulse, ForceMode2D.Impulse);
+    }
+
+    public void Powerup(PowerupType type)
+    {
+        if (type == PowerupType.Coin)
+        {
+            coinAudio.Play();
+            gameManager.IncreaseScore(1);
+        }
+        if (type == PowerupType.MagicMushroom)
+        {
+            shroomAudio.Play();
+        }
     }
 
 }

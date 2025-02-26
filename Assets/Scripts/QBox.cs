@@ -4,8 +4,10 @@ using UnityEngine;
 public class QBox : MonoBehaviour
 {
 
+    public PowerupType spawntype;
+    public GameObject coinPrefab;
+    public GameObject shroomPrefab;
     public Animator qboxAnimator;
-    public Coin coin;
     public float initvel = 10;
     private bool alive = true;
     private Rigidbody2D qboxBody;
@@ -28,7 +30,14 @@ public class QBox : MonoBehaviour
             alive = false;
             qboxBody.linearVelocityY = initvel;
             qboxAnimator.Play("q-block-ded");
-            coin.spawnCoin();
+            if (spawntype == PowerupType.MagicMushroom)
+            {
+                Instantiate(shroomPrefab, new Vector3(transform.position.x, transform.position.y + 1, 0), Quaternion.identity, transform);
+            }
+            else if (spawntype == PowerupType.Coin)
+            {
+                Instantiate(coinPrefab, new Vector3(transform.position.x, transform.position.y + 1, 0), Quaternion.identity, transform);
+            }
         }
     }
 
@@ -49,7 +58,6 @@ public class QBox : MonoBehaviour
         qboxBody.linearVelocity = new Vector2(0, 0);
         transform.localPosition = new Vector3(0, 0, 0);
         qboxAnimator.Play("q-block-idle");
-        coin.GameRestart();
     }
 
 }
