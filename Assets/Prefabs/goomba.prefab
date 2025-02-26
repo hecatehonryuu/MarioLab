@@ -177,11 +177,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e6f6d6b1d16ffff4a818a94b1a18626c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxOffset: 5
-  enemyPatroltime: 2
   startPosition: {x: 0, y: 0, z: 0}
   goombaAnimator: {fileID: 3278761531739923946}
   goombaAudio: {fileID: 3098842003829818484}
+  gameConstants: {fileID: 11400000, guid: 174dedd648c096140a329e435b9f225f, type: 2}
 --- !u!95 &3278761531739923946
 Animator:
   serializedVersion: 7
