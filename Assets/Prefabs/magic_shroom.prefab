@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 8014845451739355464}
   - component: {fileID: 3778364013129009992}
   - component: {fileID: 5168376599588852616}
-  - component: {fileID: 2626192478412204460}
   - component: {fileID: 4260488416713774286}
   - component: {fileID: 7862627429677520391}
   - component: {fileID: 6532377726141932418}
@@ -138,21 +137,6 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1.0320961, y: 1.0343002}
   m_EdgeRadius: 0
---- !u!114 &2626192478412204460
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 552947050405571186}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9baea1721254f8c47a0385b24806b27f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  type: 1
-  spawned: 0
-  shroomAudio: {fileID: 7862627429677520391}
 --- !u!50 &4260488416713774286
 Rigidbody2D:
   serializedVersion: 5

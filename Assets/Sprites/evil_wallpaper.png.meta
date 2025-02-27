@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      evil_wallpaper_0: 2697342655317025376
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

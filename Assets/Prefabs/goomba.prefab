@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 8833892466555995242}
   - component: {fileID: 9005390231867692130}
   - component: {fileID: 3624469900275549340}
-  - component: {fileID: 8744094068091896951}
   - component: {fileID: 3278761531739923946}
   - component: {fileID: 3098842003829818484}
   m_Layer: 6
@@ -165,22 +164,6 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1.0323114, y: 1.019809}
   m_EdgeRadius: 0
---- !u!114 &8744094068091896951
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7346088558026315738}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e6f6d6b1d16ffff4a818a94b1a18626c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  startPosition: {x: 0, y: 0, z: 0}
-  goombaAnimator: {fileID: 3278761531739923946}
-  goombaAudio: {fileID: 3098842003829818484}
-  gameConstants: {fileID: 11400000, guid: 174dedd648c096140a329e435b9f225f, type: 2}
 --- !u!95 &3278761531739923946
 Animator:
   serializedVersion: 7

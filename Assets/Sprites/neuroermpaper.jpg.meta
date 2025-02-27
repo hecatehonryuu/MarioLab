@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      neuroermpaper_0: -6816731720912195292
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
