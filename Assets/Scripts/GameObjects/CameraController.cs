@@ -8,6 +8,7 @@ public class CameraController : MonoBehaviour
     public Transform player; // Mario's Transform
     public Transform startLimit; // GameObject that indicates end of map
     public Transform endLimit; // GameObject that indicates end of map
+    public Vector3 startPosition = new Vector3(0.0f, 0.0f, 0.0f);
     private float offset; // initial x-offset between camera and Mario
     private float startX; // smallest x-coordinate of the Camera
     private float endX; // largest x-coordinate of the camera
@@ -33,5 +34,10 @@ public class CameraController : MonoBehaviour
             transform.position = new Vector3(desiredX, transform.position.y, transform.position.z);
         else
             Debug.Log("startX: " + startX + " endX: " + endX + " desiredX: " + desiredX);
+    }
+
+    public void GameRestart()
+    {
+        transform.position = startPosition;
     }
 }

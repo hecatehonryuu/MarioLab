@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 
 public class PauseButtonController : MonoBehaviour, IInteractiveButton
@@ -8,38 +10,31 @@ public class PauseButtonController : MonoBehaviour, IInteractiveButton
     private bool isPaused = false;
     public Sprite pauseIcon;
     public Sprite playIcon;
+    public UnityEvent onGamePause;
+    public UnityEvent onGameResume;
     private Image image;
-    // Start is called before the first frame update
 
-    void Awake()
-    {
-        image = GetComponent<Image>();
-    }
     void Start()
     {
+        image = GetComponent<Image>();
         image.sprite = pauseIcon;
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
+        isPaused = false;
     }
 
     public void ButtonClick()
     {
         Time.timeScale = isPaused ? 1.0f : 0.0f;
-        isPaused = !isPaused;
         if (isPaused)
         {
             image.sprite = playIcon;
-            GameManager.instance.GamePause();
+            onGameResume.Invoke();
         }
         else
         {
             image.sprite = pauseIcon;
-            GameManager.instance.GameResume();
+            onGamePause.Invoke();
         }
+        isPaused = !isPaused;
     }
 
     public void Reset()

@@ -4,7 +4,8 @@ using UnityEngine.Events;
 
 public class Coin : BasePowerup
 {
-    public AudioSource coinAudio;
+    public AudioSource coinSound;
+    public UnityEvent<int> onIncrementScore;
 
     protected override void Start()
     {
@@ -16,8 +17,9 @@ public class Coin : BasePowerup
     {
         if (other.gameObject.CompareTag("Player") && spawned)
         {
-            ApplyPowerup(other.gameObject.GetComponent<PlayerMovement>());
+            ApplyPowerup(other.GetComponent<MonoBehaviour>());
             // then destroy powerup (optional)
+            coinSound.Play();
             DestroyPowerup();
         }
     }
@@ -26,13 +28,17 @@ public class Coin : BasePowerup
     public override void SpawnPowerup()
     {
         spawned = true;
-        coinAudio.Play();
     }
 
 
     // interface implementation
     public override void ApplyPowerup(MonoBehaviour i)
     {
-        i.GetComponent<PlayerMovement>().Powerup(type);
+        onIncrementScore.Invoke(1);
+    }
+
+    public void PlayCoinSound()
+    {
+        coinSound.Play();
     }
 }

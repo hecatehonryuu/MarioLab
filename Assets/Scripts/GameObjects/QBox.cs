@@ -12,14 +12,9 @@ public class QBox : MonoBehaviour
     private bool alive = true;
     private Rigidbody2D qboxBody;
 
-    void Awake()
-    {
-        qboxBody = GetComponent<Rigidbody2D>();
-        GameManager.instance.gameStart.AddListener(GameRestart);
-        GameManager.instance.gameRestart.AddListener(GameRestart);
-    }
     void Start()
     {
+        qboxBody = GetComponent<Rigidbody2D>();
         alive = true;
     }
 

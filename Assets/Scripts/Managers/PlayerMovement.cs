@@ -4,12 +4,12 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using UnityEngine.Events;
 
 public class PlayerMovement : MonoBehaviour
 {
 
     public Vector3 startPosition = new Vector3(0.0f, 0.0f, 0.0f);
-    public Vector3 startCameraPosition = new Vector3(4.0f, 0.0f, -20f);
 
     [Header("Mario Properties")]
     public float maxDistance;
@@ -19,19 +19,15 @@ public class PlayerMovement : MonoBehaviour
     public LayerMask groundLayerMask;
     public LayerMask enemyLayerMask;
     public Animator marioAnimator;
-    public AudioSource marioAudio;
+    public AudioSource mariojumpAudio;
     public AudioSource marioDeathAudio;
-    public AudioSource coinAudio;
-    public AudioSource shroomAudio;
-    public Transform gameCamera;
     public GameConstants gameConstants;
+    public UnityEvent onGameOver;
     float deathImpulse;
     float upSpeed;
     float maxSpeed;
     float speed;
 
-
-    private GameManager gameManager;
     private Rigidbody2D marioBody;
     private SpriteRenderer marioSprite;
     private bool faceRightState = true;
@@ -43,20 +39,10 @@ public class PlayerMovement : MonoBehaviour
     public bool alive = true;
 
 
-    void Awake()
-    {
-        gameManager = GameManager.instance;
-        marioBody = GetComponent<Rigidbody2D>();
-        marioSprite = GetComponent<SpriteRenderer>();
-        // subscribe to Game Restart event
-        gameManager.gameStart.AddListener(GameRestart);
-        gameManager.gameRestart.AddListener(GameRestart);
-    }
-
-
-    // Start is called before the first frame update
     void Start()
     {
+        marioBody = GetComponent<Rigidbody2D>();
+        marioSprite = GetComponent<SpriteRenderer>();
         // Set Constants
         deathImpulse = gameConstants.deathImpulse;
         upSpeed = gameConstants.upSpeed;
@@ -96,26 +82,10 @@ public class PlayerMovement : MonoBehaviour
             Move(faceRightState == true ? 1 : -1);
         }
     }
-
-
-    void OnTriggerEnter2D(Collider2D other)
+    public void die()
     {
-        if (other.gameObject.CompareTag("Enemy") && alive)
-        {
-            Transform enemyTransform = other.gameObject.transform;
-            if (Mathf.Abs(transform.position.x - enemyTransform.position.x) < 0.7f && (transform.position.y - enemyTransform.position.y) > 0.2f)
-            {
-                marioBody.AddForce(Vector2.up * upSpeed / 2, ForceMode2D.Impulse);
-                gameManager.IncreaseScore(1);
-            }
-            else
-            {
-                // play death animation
-                marioAnimator.Play("mario-die");
-                marioDeathAudio.Play();
-                alive = false;
-            }
-        }
+        marioAnimator.Play("mario-die");
+        alive = false;
     }
 
     public void FlipMarioSprite(int value)
@@ -187,7 +157,7 @@ public class PlayerMovement : MonoBehaviour
 
     public void GameOver()
     {
-        gameManager.GameOver();
+        onGameOver.Invoke();
     }
 
     public void GameRestart()
@@ -202,7 +172,6 @@ public class PlayerMovement : MonoBehaviour
         marioAnimator.SetTrigger("gameRestart");
         alive = true;
         // reset camera position
-        gameCamera.position = startCameraPosition;
         upSpeed = gameConstants.upSpeed;
 
     }
@@ -227,27 +196,17 @@ public class PlayerMovement : MonoBehaviour
 
     void PlayJumpSound()
     {
-        // play jump sound
-        marioAudio.PlayOneShot(marioAudio.clip);
+        mariojumpAudio.Play();
+    }
+
+    void PlayDeathSound()
+    {
+        marioDeathAudio.Play();
     }
 
     void PlayDeathImpulse()
     {
         marioBody.AddForce(Vector2.up * deathImpulse, ForceMode2D.Impulse);
-    }
-
-    public void Powerup(PowerupType type)
-    {
-        if (type == PowerupType.Coin)
-        {
-            coinAudio.Play();
-            gameManager.IncreaseScore(1);
-        }
-        if (type == PowerupType.MagicMushroom)
-        {
-            shroomAudio.Play();
-            upSpeed = gameConstants.upSpeed * 2;
-        }
     }
 
 }

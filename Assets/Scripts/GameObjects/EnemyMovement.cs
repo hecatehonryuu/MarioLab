@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class EnemyMovement : MonoBehaviour
 {
@@ -9,6 +10,8 @@ public class EnemyMovement : MonoBehaviour
     public Animator goombaAnimator;
     public AudioSource goombaAudio;
     public GameConstants gameConstants;
+    public UnityEvent OnDamagePlayer;
+    public UnityEvent<int> OnIncrementScore;
     float maxOffset;
     float enemyPatroltime;
 
@@ -33,12 +36,12 @@ public class EnemyMovement : MonoBehaviour
         ComputeVelocity();
     }
 
-    void OnTriggerEnter2D(Collider2D other)
+    void OnCollisionEnter2D(Collision2D col)
     {
-        if (other.gameObject.CompareTag("Player"))
+        if (col.gameObject.CompareTag("Player"))
         {
-            Transform marioTransform = other.gameObject.transform;
-            if (Mathf.Abs(transform.position.x - marioTransform.position.x) < 0.7f && (marioTransform.position.y - transform.position.y) > 0.2f)
+            Transform marioTransform = col.gameObject.transform;
+            if ((marioTransform.position.y - transform.position.y) > 0.2f)
             {
                 // kill goomba
                 alive = false;
@@ -48,9 +51,16 @@ public class EnemyMovement : MonoBehaviour
                 GetComponent<Collider2D>().enabled = false;
                 // disable the rigidbody
                 enemyBody.bodyType = RigidbodyType2D.Static;
+                // increment score
+                OnIncrementScore.Invoke(1);
+            }
+            else if (alive)
+            {
+                // damage player
+                OnDamagePlayer.Invoke();
             }
         }
-        else if (other.gameObject.layer == 7) // else if hitting Pipe, flip travel direction
+        else if (col.gameObject.layer == 7) // else if hitting Pipe, flip travel direction
         {
             moveRight *= -1;
             ComputeVelocity();

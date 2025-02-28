@@ -18,29 +18,6 @@ public class HUDManager : MonoBehaviour
     public GameObject gameOverPanel;
     public IntVariable gameScore;
 
-
-    void Awake()
-    {
-        // subscribe to events
-        GameManager.instance.gameStart.AddListener(GameStart);
-        GameManager.instance.gameOver.AddListener(GameOver);
-        GameManager.instance.gameRestart.AddListener(GameStart);
-        GameManager.instance.scoreChange.AddListener(SetScore);
-        GameManager.instance.gamePause.AddListener(GamePause);
-        GameManager.instance.gameResume.AddListener(GameStart);
-
-    }
-    // Start is called before the first frame update
-    void Start()
-    {
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
-
     public void GameStart()
     {
         // hide gameover panel
@@ -53,9 +30,9 @@ public class HUDManager : MonoBehaviour
         scoreText.transform.localPosition = scoreTextPosition[0];
     }
 
-    public void SetScore(int score)
+    public void SetScore()
     {
-        scoreText.GetComponent<TextMeshProUGUI>().text = "Score: " + score.ToString();
+        scoreText.GetComponent<TextMeshProUGUI>().text = "Score: " + gameScore.Value.ToString();
     }
 
 

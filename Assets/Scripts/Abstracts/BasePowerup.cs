@@ -3,18 +3,16 @@ using UnityEngine;
 
 public abstract class BasePowerup : MonoBehaviour, IPowerup
 {
+
+    [System.NonSerialized]
     public PowerupType type;
+    [System.NonSerialized]
     public bool spawned = false;
     protected bool consumed = false;
     protected bool goRight = true;
     protected Rigidbody2D rigidBody;
 
     // base methods
-
-    protected virtual void Awake()
-    {
-        GameManager.instance.gameRestart.AddListener(DestroyPowerup);
-    }
     protected virtual void Start()
     {
         rigidBody = GetComponent<Rigidbody2D>();

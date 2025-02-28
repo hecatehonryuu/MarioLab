@@ -2,22 +2,27 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class MagicMushroomPowerup : BasePowerup
 {
-    public AudioSource shroomAudio;
+    public AudioSource shroomSound;
+    public AudioSource collectSound;
+    public UnityEvent<BasePowerup> onPowerupAffectsPlayer;
 
     protected override void Start()
     {
         base.Start(); // call base class Start()
         this.type = PowerupType.MagicMushroom;
+        spawned = false;
     }
 
     void OnCollisionEnter2D(Collision2D col)
     {
         if (col.gameObject.CompareTag("Player") && spawned)
         {
-            ApplyPowerup(col.gameObject.GetComponent<PlayerMovement>());
+            ApplyPowerup(col.gameObject.GetComponent<MonoBehaviour>());
+            collectSound.Play();
             // then destroy powerup (optional)
             DestroyPowerup();
 
@@ -39,11 +44,6 @@ public class MagicMushroomPowerup : BasePowerup
     // interface implementation
     public override void SpawnPowerup()
     {
-        shroomAudio.Play();
-    }
-
-    void startmove()
-    {
         spawned = true;
         rigidBody.AddForce(Vector2.right * 3, ForceMode2D.Impulse); // move to the right
         rigidBody.AddForce(Vector2.up * 3, ForceMode2D.Impulse);
@@ -53,6 +53,11 @@ public class MagicMushroomPowerup : BasePowerup
     // interface implementation
     public override void ApplyPowerup(MonoBehaviour i)
     {
-        i.GetComponent<PlayerMovement>().Powerup(type);
+        onPowerupAffectsPlayer.Invoke(this);
+    }
+
+    public void PlayMagicMushroomSound()
+    {
+        shroomSound.Play();
     }
 }
