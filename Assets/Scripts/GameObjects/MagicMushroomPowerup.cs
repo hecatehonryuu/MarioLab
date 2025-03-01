@@ -7,8 +7,6 @@ using UnityEngine.Events;
 public class MagicMushroomPowerup : BasePowerup
 {
     public AudioSource shroomSound;
-    public AudioSource collectSound;
-    public UnityEvent<BasePowerup> onPowerupAffectsPlayer;
 
     protected override void Start()
     {
@@ -22,22 +20,14 @@ public class MagicMushroomPowerup : BasePowerup
         if (col.gameObject.CompareTag("Player") && spawned)
         {
             ApplyPowerup(col.gameObject.GetComponent<MonoBehaviour>());
-            collectSound.Play();
             // then destroy powerup (optional)
             DestroyPowerup();
 
         }
-        else if (col.gameObject.layer == 7 || col.gameObject.layer == 3) // else if hitting Ground/Pipe, flip travel direction
+        else if (col.gameObject.layer == 7 && spawned) // else if hitting Pipe, flip travel direction
         {
-            if (spawned)
-            {
-                if (col.gameObject.layer == 7)
-                {
-                    goRight = !goRight;
-                }
-                rigidBody.AddForce(Vector2.right * 3 * (goRight ? 1 : -1), ForceMode2D.Impulse);
-                rigidBody.AddForce(Vector2.up * 3, ForceMode2D.Impulse);
-            }
+            goRight = !goRight;
+            rigidBody.AddForce(Vector2.right * 3 * (goRight ? 1 : -1), ForceMode2D.Impulse);
         }
     }
 
@@ -46,14 +36,6 @@ public class MagicMushroomPowerup : BasePowerup
     {
         spawned = true;
         rigidBody.AddForce(Vector2.right * 3, ForceMode2D.Impulse); // move to the right
-        rigidBody.AddForce(Vector2.up * 3, ForceMode2D.Impulse);
-    }
-
-
-    // interface implementation
-    public override void ApplyPowerup(MonoBehaviour i)
-    {
-        onPowerupAffectsPlayer.Invoke(this);
     }
 
     public void PlayMagicMushroomSound()

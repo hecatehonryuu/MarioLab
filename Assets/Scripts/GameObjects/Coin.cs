@@ -13,15 +13,10 @@ public class Coin : BasePowerup
         this.type = PowerupType.Coin;
     }
 
-    void OnTriggerEnter2D(Collider2D other)
+    public void collectCoin()
     {
-        if (other.gameObject.CompareTag("Player") && spawned)
-        {
-            ApplyPowerup(other.GetComponent<MonoBehaviour>());
-            // then destroy powerup (optional)
-            coinSound.Play();
-            DestroyPowerup();
-        }
+        onIncrementScore.Invoke(1);
+        Destroy(gameObject);
     }
 
     // interface implementation

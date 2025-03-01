@@ -5,8 +5,8 @@ public class Brick : MonoBehaviour
 {
     public float initvel = 10;
     public bool spawnCoin = false;
-    public GameObject coinPrefab;
     private bool alive = true;
+    public GameObject coinPrefab;
     private Rigidbody2D brickBody;
 
     void Start()

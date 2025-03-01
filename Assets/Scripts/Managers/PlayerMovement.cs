@@ -19,9 +19,11 @@ public class PlayerMovement : MonoBehaviour
     public LayerMask groundLayerMask;
     public LayerMask enemyLayerMask;
     public Animator marioAnimator;
-    public AudioSource mariojumpAudio;
+    public AudioSource marioJumpAudio;
     public AudioSource marioDeathAudio;
+    public AudioSource marioPowerupAudio;
     public GameConstants gameConstants;
+    public BoolVariable marioFaceRight;
     public UnityEvent onGameOver;
     float deathImpulse;
     float upSpeed;
@@ -30,7 +32,6 @@ public class PlayerMovement : MonoBehaviour
 
     private Rigidbody2D marioBody;
     private SpriteRenderer marioSprite;
-    private bool faceRightState = true;
     private bool jumpedState = false;
     private bool moving = false;
 
@@ -79,29 +80,29 @@ public class PlayerMovement : MonoBehaviour
     {
         if (alive && moving)
         {
-            Move(faceRightState == true ? 1 : -1);
+            Move(marioFaceRight.Value == true ? 1 : -1);
         }
     }
-    public void die()
+
+    public void DamageMario()
     {
-        marioAnimator.Play("mario-die");
-        alive = false;
+        GetComponent<MarioStateController>().SetPowerup(PowerupType.Damage);
     }
 
     public void FlipMarioSprite(int value)
     {
 
-        if (value == -1 && faceRightState)
+        if (value == -1 && marioFaceRight.Value)
         {
-            faceRightState = false;
+            marioFaceRight.SetValue(false);
             marioSprite.flipX = true;
             if (marioBody.linearVelocityX > 0.1f)
                 marioAnimator.SetTrigger("onSkid");
         }
 
-        else if (value == 1 && !faceRightState)
+        else if (value == 1 && !marioFaceRight.Value)
         {
-            faceRightState = true;
+            marioFaceRight.SetValue(true);
             marioSprite.flipX = false;
             if (marioBody.linearVelocityX < -0.1f)
                 marioAnimator.SetTrigger("onSkid");
@@ -162,18 +163,9 @@ public class PlayerMovement : MonoBehaviour
 
     public void GameRestart()
     {
-        // reset position
         marioBody.linearVelocity = Vector2.zero;
         marioBody.transform.position = startPosition;
-        // reset sprite direction
-        // faceRightState = true;
-        // marioSprite.flipX = false;
-        // reset animation
-        marioAnimator.SetTrigger("gameRestart");
         alive = true;
-        // reset camera position
-        upSpeed = gameConstants.upSpeed;
-
     }
 
     private bool onGroundCheck()
@@ -196,12 +188,17 @@ public class PlayerMovement : MonoBehaviour
 
     void PlayJumpSound()
     {
-        mariojumpAudio.Play();
+        marioJumpAudio.Play();
     }
 
     void PlayDeathSound()
     {
         marioDeathAudio.Play();
+    }
+
+    void PlayPowerupSound()
+    {
+        marioPowerupAudio.Play();
     }
 
     void PlayDeathImpulse()

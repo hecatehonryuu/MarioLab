@@ -7,6 +7,8 @@ public class QBox : MonoBehaviour
     public PowerupType spawntype;
     public GameObject coinPrefab;
     public GameObject shroomPrefab;
+    public GameObject flowerPrefab;
+    public GameObject starPrefab;
     public Animator qboxAnimator;
     public float initvel = 10;
     private bool alive = true;
@@ -31,7 +33,15 @@ public class QBox : MonoBehaviour
             }
             else if (spawntype == PowerupType.Coin)
             {
-                Instantiate(coinPrefab, new Vector3(transform.position.x, transform.position.y + 1, 0), Quaternion.identity, transform);
+                Instantiate(coinPrefab, new Vector3(transform.position.x, transform.position.y, 0), Quaternion.identity, transform);
+            }
+            else if (spawntype == PowerupType.FireFlower)
+            {
+                Instantiate(flowerPrefab, new Vector3(transform.position.x, transform.position.y + 0.5f, 0), Quaternion.identity, transform);
+            }
+            else if (spawntype == PowerupType.StarMan)
+            {
+                Instantiate(starPrefab, new Vector3(transform.position.x, transform.position.y + 1, 0), Quaternion.identity, transform);
             }
         }
     }

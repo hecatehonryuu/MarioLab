@@ -11,6 +11,7 @@ public class GameConstants : ScriptableObject
     public int maxSpeed;
     public int upSpeed;
     public int deathImpulse;
+    public float flickerInterval;
 
     [Header("Goomba Properties")]
     public float goombaPatrolTime;

@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9d07ca24ffcf1324ba314f2b1077feee, type: 3}
+  m_Name: StateSmol
+  m_EditorClassIdentifier: 
+  setupActions:
+  - {fileID: 11400000, guid: 52aa29a274acbc74c9a61bd14c8b57c4, type: 2}
+  - {fileID: 11400000, guid: 94f4f3dbd6c22ad46b5a61419a2bad24, type: 2}
+  actions: []
+  eventTriggeredActions: []
+  exitActions: []
+  transitions:
+  - decision: {fileID: 11400000, guid: f5b360aa586357d4992011392a7151a2, type: 2}
+    trueState: {fileID: 11400000, guid: b6f0e55996b61074ab42c33ce812a496, type: 2}
+    falseState: {fileID: 11400000, guid: 135cc26f64186b84c80597b889b82644, type: 2}
+  - decision: {fileID: 11400000, guid: 7599eb5a6f0efc24cac6ff739d65a7c8, type: 2}
+    trueState: {fileID: 11400000, guid: 0336d64156db8e34598169ef378b67fa, type: 2}
+    falseState: {fileID: 11400000, guid: 135cc26f64186b84c80597b889b82644, type: 2}
+  sceneGizmoColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}

@@ -120,6 +120,7 @@ GameObject:
   - component: {fileID: 4779027562393005128}
   - component: {fileID: 1554590286545093151}
   - component: {fileID: 4059440915590041500}
+  - component: {fileID: 6876536785829025814}
   m_Layer: 7
   m_Name: brick
   m_TagString: Ground
@@ -306,3 +307,31 @@ MonoBehaviour:
   initvel: 10
   spawnCoin: 1
   coinPrefab: {fileID: 2570756920144891962, guid: 5299913567f418549b634111c65c0cdd, type: 3}
+--- !u!114 &6876536785829025814
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2003499034483759039}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 621563bf803489843a1ca14c2d133227, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Event: {fileID: 11400000, guid: 980ef9990aefd3244b0701e520069381, type: 2}
+  Response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 4059440915590041500}
+        m_TargetAssemblyTypeName: Brick, Assembly-CSharp
+        m_MethodName: GameRestart
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2

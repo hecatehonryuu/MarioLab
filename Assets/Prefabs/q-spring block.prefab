@@ -121,6 +121,7 @@ GameObject:
   - component: {fileID: 1554590286545093151}
   - component: {fileID: 5998932542129297914}
   - component: {fileID: 2089626063567623482}
+  - component: {fileID: 9195654508297895396}
   m_Layer: 7
   m_Name: Q-block
   m_TagString: Ground
@@ -329,5 +330,35 @@ MonoBehaviour:
   spawntype: 0
   coinPrefab: {fileID: 2570756920144891962, guid: 5299913567f418549b634111c65c0cdd, type: 3}
   shroomPrefab: {fileID: 552947050405571186, guid: 97ad034a9b40b8444a16e90111e44daa, type: 3}
+  flowerPrefab: {fileID: 552947050405571186, guid: 0b46e2129c73e884d985418c1a9af39b, type: 3}
+  starPrefab: {fileID: 552947050405571186, guid: 3c35c0f1ec70d2d4e8aab3db35549b27, type: 3}
   qboxAnimator: {fileID: 5998932542129297914}
   initvel: 10
+--- !u!114 &9195654508297895396
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2003499034483759039}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 621563bf803489843a1ca14c2d133227, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Event: {fileID: 11400000, guid: 980ef9990aefd3244b0701e520069381, type: 2}
+  Response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2089626063567623482}
+        m_TargetAssemblyTypeName: QBox, Assembly-CSharp
+        m_MethodName: GameRestart
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2

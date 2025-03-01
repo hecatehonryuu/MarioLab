@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9d07ca24ffcf1324ba314f2b1077feee, type: 3}
+  m_Name: StateSupa
+  m_EditorClassIdentifier: 
+  setupActions:
+  - {fileID: 11400000, guid: e1f30582ee12ae044809696b994ba5b7, type: 2}
+  - {fileID: 11400000, guid: 94f4f3dbd6c22ad46b5a61419a2bad24, type: 2}
+  actions: []
+  eventTriggeredActions: []
+  exitActions: []
+  transitions:
+  - decision: {fileID: 11400000, guid: d42456f5d3f87ae47b4c00beafb93c8e, type: 2}
+    trueState: {fileID: 11400000, guid: 05a52ced7e1ac36469363def0b022fb5, type: 2}
+    falseState: {fileID: 11400000, guid: 135cc26f64186b84c80597b889b82644, type: 2}
+  - decision: {fileID: 11400000, guid: ea678de1de803424d8937deff08368a7, type: 2}
+    trueState: {fileID: 11400000, guid: 44d6ff88ca151d1448d7343e48ca14e4, type: 2}
+    falseState: {fileID: 11400000, guid: 135cc26f64186b84c80597b889b82644, type: 2}
+  sceneGizmoColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}

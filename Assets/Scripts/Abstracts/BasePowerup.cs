@@ -41,8 +41,16 @@ public abstract class BasePowerup : MonoBehaviour, IPowerup
     {
         Destroy(this.gameObject);
     }
+    public virtual void ApplyPowerup(MonoBehaviour i)
+    {
+        MarioStateController mario;
+        bool result = i.TryGetComponent<MarioStateController>(out mario);
+        if (result)
+        {
+            mario.SetPowerup(this.powerupType);
+        }
+    }
 
     // 2. abstract methods, must be implemented by derived classes
     public abstract void SpawnPowerup();
-    public abstract void ApplyPowerup(MonoBehaviour i);
 }
