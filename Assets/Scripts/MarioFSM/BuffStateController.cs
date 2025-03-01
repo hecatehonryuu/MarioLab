@@ -3,10 +3,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MarioStateController : StateController
+public class BuffStateController : StateController
 {
     public PowerupType currentPowerupType = PowerupType.Default;
-    public MarioState shouldBeNextState = MarioState.Default;
+    public BuffState shouldBeNextState = BuffState.StateUnbuffed;
     public GameConstants gameConstants;
     private SpriteRenderer spriteRenderer;
 
@@ -30,6 +30,11 @@ public class MarioStateController : StateController
         currentPowerupType = i;
     }
 
+    public bool IsCurrentStateInvincible()
+    {
+        return EnumExtension.ParseEnum<BuffState>(currentState.name) == BuffState.StateBuffed;
+    }
+
     public void SetRendererToFlicker()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
@@ -38,7 +43,7 @@ public class MarioStateController : StateController
     private IEnumerator BlinkSpriteRenderer()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
-        while (string.Equals(currentState.name, "StateInviSmol", StringComparison.OrdinalIgnoreCase))
+        while (IsCurrentStateInvincible())
         {
             // Toggle the visibility of the sprite renderer
             spriteRenderer.enabled = !spriteRenderer.enabled;
@@ -48,10 +53,5 @@ public class MarioStateController : StateController
         }
 
         spriteRenderer.enabled = true;
-    }
-
-    public void Fire()
-    {
-        this.currentState.DoEventTriggeredActions(this, ActionType.Attack);
     }
 }

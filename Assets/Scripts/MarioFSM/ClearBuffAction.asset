@@ -9,7 +9,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1852b6ec24b7c724da54a61868b2021b, type: 3}
-  m_Name: InviBuffCountdownDecision
+  m_Script: {fileID: 11500000, guid: 3f9e7a16f5b11ce4b84e56a26abcfee8, type: 3}
+  m_Name: ClearBuffAction
   m_EditorClassIdentifier: 
-  buffDuration: 1

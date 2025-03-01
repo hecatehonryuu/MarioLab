@@ -2,9 +2,9 @@
 public enum MarioState
 {
     Default = -1,
-    SmallMario = 0,
-    SuperMario = 1,
-    FireMario = 2,
-    InvincibleSmallMario = 3,
-    DeadMario = 99
+    StateSmol = 0,
+    StateSupa = 1,
+    StateFlowa = 2,
+    StateInviSmol = 3,
+    StateDed = 99
 }

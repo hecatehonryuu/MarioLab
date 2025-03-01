@@ -28,7 +28,6 @@ public class GameManager : MonoBehaviour
     public void IncreaseScore(int increment)
     {
         gameScore.ApplyChange(increment);
-        Debug.Log(gameScore.Value);
         OnUpdateScore.Invoke();
     }
 

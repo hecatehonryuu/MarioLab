@@ -42,4 +42,14 @@ public class StarmanPowerup : BasePowerup
     {
         starSound.Play();
     }
+
+    public override void ApplyPowerup(MonoBehaviour i)
+    {
+        BuffStateController mario;
+        bool result = i.TryGetComponent<BuffStateController>(out mario);
+        if (result)
+        {
+            mario.SetPowerup(this.powerupType);
+        }
+    }
 }

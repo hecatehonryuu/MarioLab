@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: FireAttackAction
   m_EditorClassIdentifier: 
   maxPrefabInScene: 3
-  impulseForce: 1
-  degree: 45
+  impulseForce: 3
+  degree: -45
   attackPrefab: {fileID: 2570756920144891962, guid: 52ae1debf2362964cb06f6d1f11080f9, type: 3}
   marioFaceRight: {fileID: 11400000, guid: 007f4ff8594490648b3bed4f563ce598, type: 2}

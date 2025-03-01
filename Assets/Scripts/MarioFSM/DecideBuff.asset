@@ -9,7 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1852b6ec24b7c724da54a61868b2021b, type: 3}
-  m_Name: InviBuffCountdownDecision
+  m_Script: {fileID: 11500000, guid: ed1b5b884dd24874ab1b547d177f02dc, type: 3}
+  m_Name: DecideBuff
   m_EditorClassIdentifier: 
-  buffDuration: 1
+  map:
+  - fromState: -1
+    powerupCollected: 3

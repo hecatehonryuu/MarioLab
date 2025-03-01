@@ -86,6 +86,11 @@ public class PlayerMovement : MonoBehaviour
 
     public void DamageMario()
     {
+        bool invincible = GetComponent<BuffStateController>().IsCurrentStateInvincible();
+        if (invincible)
+        {
+            return;
+        }
         GetComponent<MarioStateController>().SetPowerup(PowerupType.Damage);
     }
 

@@ -38,27 +38,22 @@ public class EnemyMovement : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D col)
     {
-        if (col.gameObject.CompareTag("Player"))
+        if (alive && col.gameObject.CompareTag("Player"))
         {
             Transform marioTransform = col.gameObject.transform;
             if ((marioTransform.position.y - transform.position.y) > 0.2f)
             {
-                // kill goomba
-                alive = false;
-                goombaAnimator.Play("goomba-die");
-                goombaAudio.Play();
-                // disable the collider
-                GetComponent<Collider2D>().enabled = false;
-                // disable the rigidbody
-                enemyBody.bodyType = RigidbodyType2D.Static;
-                // increment score
-                OnIncrementScore.Invoke(1);
+                KillGoomba();
             }
             else if (alive)
             {
                 // damage player
                 OnDamagePlayer.Invoke();
             }
+        }
+        else if (col.gameObject.CompareTag("Fireball")) // if hitting obstacle, flip travel direction
+        {
+            KillGoomba();
         }
         else if (col.gameObject.layer == 7) // else if hitting Pipe, flip travel direction
         {
@@ -94,6 +89,18 @@ public class EnemyMovement : MonoBehaviour
         enemyBody.MovePosition(enemyBody.position + velocity * Time.fixedDeltaTime);
     }
 
+    void KillGoomba()
+    {
+        // kill goomba
+        alive = false;
+        goombaAnimator.Play("goomba-die");
+        goombaAudio.Play();
+        // disable the rigidbody
+        enemyBody.bodyType = RigidbodyType2D.Static;
+        // increment score
+        OnIncrementScore.Invoke(1);
+    }
+
     public void GoombaDead()
     {
         gameObject.SetActive(false);
@@ -103,7 +110,6 @@ public class EnemyMovement : MonoBehaviour
     {
         gameObject.SetActive(true);
         alive = true;
-        GetComponent<Collider2D>().enabled = true;
         enemyBody.bodyType = RigidbodyType2D.Kinematic;
         goombaAnimator.Play("goomba-walk");
         transform.localScale = new Vector3(1, 1, 1);
