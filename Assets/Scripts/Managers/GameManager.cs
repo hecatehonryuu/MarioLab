@@ -13,6 +13,7 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
+        gameScore.Value = 0;
         onGameStart.Invoke();
         Time.timeScale = 1.0f;
     }
