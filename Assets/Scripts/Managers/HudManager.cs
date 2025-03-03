@@ -28,6 +28,7 @@ public class HUDManager : MonoBehaviour
         pauseButton.SetActive(true);
         pauseButton.GetComponent<PauseButtonController>().Reset();
         scoreText.transform.localPosition = scoreTextPosition[0];
+        SetScore();
     }
 
     public void SetScore()

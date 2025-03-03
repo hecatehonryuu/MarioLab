@@ -44,6 +44,7 @@ public class EnemyMovement : MonoBehaviour
             if ((marioTransform.position.y - transform.position.y) > 0.2f)
             {
                 KillGoomba();
+                alive = false;
             }
             else if (alive)
             {
